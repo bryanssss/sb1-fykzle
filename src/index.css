@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-900 dark:to-purple-900 dark:text-white transition-colors duration-200 min-h-screen overscroll-none;
+  }
+
+  /* Improve touch targets */
+  button, a {
+    @apply touch-manipulation;
+  }
+
+  /* Better text readability on mobile */
+  p, li {
+    @apply text-base leading-relaxed break-words;
+  }
+
+  /* Optimize headings for mobile */
+  h1 {
+    @apply text-2xl sm:text-4xl font-bold leading-tight;
+  }
+
+  h2 {
+    @apply text-xl sm:text-3xl font-bold leading-tight;
+  }
+
+  h3 {
+    @apply text-lg sm:text-2xl font-bold leading-tight;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Mobile-optimized card styles */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6;
+  }
+
+  /* Mobile-friendly buttons */
+  .btn {
+    @apply px-4 py-3 rounded-lg font-medium transition-colors
+           active:scale-95 transform duration-75
+           min-h-[44px] min-w-[44px] /* Minimum touch target size */
+           flex items-center justify-center gap-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-purple-500 text-white hover:bg-purple-600;
+  }
+
+  .btn-secondary {
+    @apply btn bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white
+           hover:bg-gray-200 dark:hover:bg-gray-600;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom scrollbar for better touch scrolling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+/* Loading state animations */
+.loading {
+  @apply animate-pulse bg-gray-200 dark:bg-gray-700 rounded;
+}
+
+/* Fade animations */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 200ms, transform 200ms;
+}
+
+/* Safe area insets for modern mobile browsers */
+.safe-area-inset {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Dark mode image handling */
+.dark .dark\:invert {
+  filter: invert(1);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
